@@ -2,6 +2,9 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -18,7 +21,7 @@ import javax.swing.JTextField;
 public class QuizCreateFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField fileName;
 	private ArrayList<ShortAnswerQuestion> quizQuestions = new ArrayList<>();
 
 	/**
@@ -88,10 +91,10 @@ public class QuizCreateFrame extends JFrame {
 		addMultipleAnswer.setBounds(259, 184, 266, 29);
 		contentPane.add(addMultipleAnswer);
 		
-		textField = new JTextField();
-		textField.setBounds(201, 71, 314, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		fileName = new JTextField();
+		fileName.setBounds(201, 71, 314, 26);
+		contentPane.add(fileName);
+		fileName.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Reload saved questions");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -108,6 +111,25 @@ public class QuizCreateFrame extends JFrame {
 		
 		btnNewButton.setBounds(6, 243, 203, 29);
 		contentPane.add(btnNewButton);
+		
+		JButton btnSaveQuiz = new JButton("Save Quiz");
+		btnSaveQuiz.setBounds(269, 225, 117, 29);
+		contentPane.add(btnSaveQuiz);
+		btnSaveQuiz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName.getText() + ".txt"))){
+					for (int i = 0; i < quizQuestions.size(); i++) {
+						bw.write(quizQuestions.get(i).askQuestion());
+						ArrayList<String> answers = quizQuestions.get(i).getAnswers();
+						for (int j = 0; j < answers.size(); j++) {
+							bw.write(answers.get(j));
+						}
+					}
+		        }catch (IOException ioe){
+		            ioe.printStackTrace();
+		        }
+			}
+		});
 	
 		
 		addMultipleAnswer.addActionListener(new ActionListener() {

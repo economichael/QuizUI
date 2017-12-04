@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class MultipleChoiceQuestion extends ShortAnswerQuestion {
 
-    ArrayList<String> possibleAnswers = new ArrayList<>();
+    ArrayList<String> allAnswers = new ArrayList<>();
     String actualAnswer;
     
     public MultipleChoiceQuestion() {
@@ -15,7 +15,7 @@ public class MultipleChoiceQuestion extends ShortAnswerQuestion {
     public MultipleChoiceQuestion (String question, ArrayList<String> possibleAnswers, String actualAnswer){
     		this.question = question;
     		this.actualAnswer = actualAnswer;
-        this.possibleAnswers = possibleAnswers;
+        this.allAnswers = possibleAnswers;
     }
 
     @Override
@@ -30,14 +30,15 @@ public class MultipleChoiceQuestion extends ShortAnswerQuestion {
 
     @Override
     public MultipleChoiceQuestion clone(){
-        return new MultipleChoiceQuestion(super.askQuestion(), this.possibleAnswers, this.actualAnswer);
+        return new MultipleChoiceQuestion(super.askQuestion(), this.allAnswers, this.actualAnswer);
     }
     
     public void setPossibleAnswers (ArrayList<String> possibleAnswers){
-        this.possibleAnswers = possibleAnswers;
+        this.allAnswers = possibleAnswers;
     }
+    
     public ArrayList<String> getPossibleAnswers(){
-        return possibleAnswers;
+        return allAnswers;
     }
     
     public void setActualAnswer(String actualAnswer) {

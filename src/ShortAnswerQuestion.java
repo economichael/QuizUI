@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class ShortAnswerQuestion{
     protected String question;
-    protected ArrayList<String> acceptableAnswers = new ArrayList<>();;
+    protected ArrayList<String> allAnswers = new ArrayList<>();;
     
     public ShortAnswerQuestion(){
     		//do nothing
@@ -10,14 +10,14 @@ public class ShortAnswerQuestion{
 
     public ShortAnswerQuestion(String question, ArrayList<String> acceptableAnswers){
         this.question = question;
-        this.acceptableAnswers = acceptableAnswers;
+        this.allAnswers = acceptableAnswers;
     }
     public String askQuestion(){
         return question;
     }
     
     public boolean check(String userAnswer){
-        return acceptableAnswers.contains(userAnswer);
+        return allAnswers.contains(userAnswer);
     }
     
     public void setQuestion(String question){
@@ -25,12 +25,16 @@ public class ShortAnswerQuestion{
     }
     
     public void setAnswers(ArrayList<String> acceptableAnswers) {
-    		this.acceptableAnswers = acceptableAnswers;
+    		this.allAnswers = acceptableAnswers;
     }
+    
+    public ArrayList<String> getAnswers() {
+		return allAnswers;
+}
     
     @Override
     public ShortAnswerQuestion clone(){
-        return new ShortAnswerQuestion(question, acceptableAnswers);
+        return new ShortAnswerQuestion(question, allAnswers);
     }
     	//sup
     @Override

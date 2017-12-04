@@ -19,11 +19,12 @@ public class MultipleAnswerFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JEditorPane editorPane;
-	private JEditorPane editorPane_1;
+	private JEditorPane correctAnswers;
+	private JEditorPane possibleAnswers;
 	private JTextPane txtpnEnterCorrectAnswers;
 	private JTextPane txtpnEnterIncorrectAnswers;
 	private JButton btnSave;
+	private MultipleAnswerQuestion multipleAnswerQuestion;
 
 	/**
 	 * Launch the application.
@@ -62,13 +63,13 @@ public class MultipleAnswerFrame extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		editorPane = new JEditorPane();
-		editorPane.setBounds(33, 120, 148, 122);
-		contentPane.add(editorPane);
+		correctAnswers = new JEditorPane();
+		correctAnswers.setBounds(33, 120, 148, 122);
+		contentPane.add(correctAnswers);
 		
-		editorPane_1 = new JEditorPane();
-		editorPane_1.setBounds(249, 120, 158, 122);
-		contentPane.add(editorPane_1);
+		possibleAnswers = new JEditorPane();
+		possibleAnswers.setBounds(249, 120, 158, 122);
+		contentPane.add(possibleAnswers);
 		
 		txtpnEnterCorrectAnswers = new JTextPane();
 		txtpnEnterCorrectAnswers.setText("Enter correct answers separated by new line");
@@ -85,11 +86,13 @@ public class MultipleAnswerFrame extends JFrame {
 		contentPane.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				multipleChoiceQuestion.setQuestion(textField.getText());
-				ArrayList<String> answers = new ArrayList<>(Arrays.asList(editorPane.getText().split("\n")));
-				multipleChoiceQuestion.setActualAnswer(answers.get(0));
-				Collections.shuffle(answers);
-				multipleChoiceQuestion.setPossibleAnswers(answers);
+				multipleAnswerQuestion.setQuestion(textField.getText());
+				ArrayList<String> answers = new ArrayList<>(Arrays.asList(correctAnswers.getText().split("\n")));
+				ArrayList<String> possibleAnswerList = new ArrayList<>(Arrays.asList(possibleAnswers.getText().split("\n")));
+				possibleAnswerList.addAll(answers);
+				multipleAnswerQuestion.setActualAnswers(answers);
+				Collections.shuffle(possibleAnswerList);
+				multipleAnswerQuestion.setPossibleAnswers(possibleAnswerList);
 				dispose();
 			}
 		});

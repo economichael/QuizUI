@@ -26,7 +26,6 @@ public class Quiz {
         }
     }
 
-    //sup
     // addQuestion method receives Question object, add to array of questions in the quiz
     public void addQuestion (ShortAnswerQuestion question){
         holdQuestions.add(question);
