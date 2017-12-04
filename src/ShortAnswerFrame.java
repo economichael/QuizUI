@@ -70,9 +70,9 @@ public class ShortAnswerFrame extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				shortAnswerQuestion.setQuestion(txtpnQuestion.getText());
-				shortAnswerQuestion.setAnswers(new ArrayList<>(Arrays.asList(txtpnEnterAnswer.getText().split("\n"))));
-				setVisible(false);
+				shortAnswerQuestion.setQuestion(textField.getText());
+				shortAnswerQuestion.setAnswers(new ArrayList<>(Arrays.asList(editorPane.getText().split("\n"))));
+				dispose();
 			}
 		});
 		btnSave.setBounds(156, 243, 117, 29);

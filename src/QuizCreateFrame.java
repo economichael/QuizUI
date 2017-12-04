@@ -49,17 +49,17 @@ public class QuizCreateFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList<String> list = new JList<>();
-		list.setBounds(6, 264, 107, -256);
-		contentPane.add(list);
-		
 		JTextPane txtpnQuestion = new JTextPane();
 		txtpnQuestion.setText("Quiz Name: ");
-		txtpnQuestion.setBounds(136, 56, 84, 16);
+		txtpnQuestion.setBounds(281, 54, 84, 16);
 		contentPane.add(txtpnQuestion);
 		
+		JList list = new JList();
+		list.setBounds(6, 6, 191, 222);
+		contentPane.add(list);
+		
 		JButton addShortAnswer = new JButton("Add Short Answer Question");
-		addShortAnswer.setBounds(154, 121, 266, 22);
+		addShortAnswer.setBounds(249, 120, 266, 22);
 		contentPane.add(addShortAnswer);
 		addShortAnswer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -67,11 +67,12 @@ public class QuizCreateFrame extends JFrame {
 				ShortAnswerFrame shortAnswerFrame = new ShortAnswerFrame();
 				shortAnswerFrame.addQuestion(shortAnswerQuestion);
 				shortAnswerFrame.setVisible(true);
+				quizQuestions.add(shortAnswerQuestion);
 			}
 		});
 		
 		JButton addMultipleChoice = new JButton("Add Multiple Choice Question");
-		addMultipleChoice.setBounds(154, 147, 266, 29);
+		addMultipleChoice.setBounds(249, 154, 266, 29);
 		contentPane.add(addMultipleChoice);
 		addMultipleChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,11 +82,11 @@ public class QuizCreateFrame extends JFrame {
 		});
 		
 		JButton addMultipleAnswer = new JButton("Add Multiple Answer");
-		addMultipleAnswer.setBounds(154, 177, 266, 29);
+		addMultipleAnswer.setBounds(259, 184, 266, 29);
 		contentPane.add(addMultipleAnswer);
 		
 		textField = new JTextField();
-		textField.setBounds(136, 72, 314, 26);
+		textField.setBounds(201, 71, 314, 26);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -94,14 +95,18 @@ public class QuizCreateFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel defaultListModel = new DefaultListModel<>();
 				for (int i = 0; i < quizQuestions.size(); i++) {
-					defaultListModel.addElement(quizQuestions.get(i).askQuestion());
+					String question = quizQuestions.get(i).askQuestion();
+					System.out.println("Question: " + question);
+					defaultListModel.addElement(question);
 				}
 				list.setModel(defaultListModel);
 			}
 		});
 		
-		btnNewButton.setBounds(162, 243, 203, 29);
+		btnNewButton.setBounds(6, 243, 203, 29);
 		contentPane.add(btnNewButton);
+	
+		
 		addMultipleAnswer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MultipleAnswerFrame multipleAnswerFrame = new MultipleAnswerFrame();
