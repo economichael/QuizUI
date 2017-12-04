@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Quiz {
-    ArrayList<Question> holdQuestions = new ArrayList<>();
+    ArrayList<ShortAnswerQuestion> holdQuestions = new ArrayList<>();
         //private Question[] holdQuestions;
         //private int index;
         private String filename;
@@ -28,7 +28,7 @@ public class Quiz {
 
     //sup
     // addQuestion method receives Question object, add to array of questions in the quiz
-    public void addQuestion (Question question){
+    public void addQuestion (ShortAnswerQuestion question){
         holdQuestions.add(question);
         //holdQuestions[index] = question;
         //index++;

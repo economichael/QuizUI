@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +17,7 @@ public class ShortAnswerFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	ShortAnswerQuestion shortAnswerQuestion;
 
 	/**
 	 * Launch the application.
@@ -36,6 +39,7 @@ public class ShortAnswerFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ShortAnswerFrame() {
+		this.shortAnswerQuestion = shortAnswerQuestion;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -66,11 +70,17 @@ public class ShortAnswerFrame extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				shortAnswerQuestion.setQuestion(txtpnQuestion.getText());
+				shortAnswerQuestion.setAnswers(new ArrayList<>(Arrays.asList(txtpnEnterAnswer.getText().split("\n"))));
+				setVisible(false);
 			}
 		});
 		btnSave.setBounds(156, 243, 117, 29);
 		contentPane.add(btnSave);
-		
 
+	}
+	
+	public void addQuestion(ShortAnswerQuestion shortAnswerQuestion) {
+		this.shortAnswerQuestion = shortAnswerQuestion;
 	}
 }

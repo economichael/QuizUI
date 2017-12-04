@@ -3,12 +3,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 
 public class QuizMaker {
 
 	private JFrame createLoadFrame;
+	private ArrayList<ShortAnswerQuestion> quizQuestions = new ArrayList<>();
 
 	/**
 	 * Launch the application.

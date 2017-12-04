@@ -1,28 +1,34 @@
 import java.util.ArrayList;
-public class MultipleChoiceQuestion extends Question {
+public class MultipleChoiceQuestion extends ShortAnswerQuestion {
 
     ArrayList<String> possibleAnswers = new ArrayList<>();
-
-    public MultipleChoiceQuestion (String question, String answer, ArrayList<String> possibleAnswers){
-        super(question, answer);
+    String actualAnswer;
+    
+    public MultipleChoiceQuestion(String question, ArrayList<String> possibleAnswers) {
+    		super(question, possibleAnswers);
+    }
+    
+    public MultipleChoiceQuestion (String question, ArrayList<String> possibleAnswers, String actualAnswer){
+    		this.question = question;
+    		this.actualAnswer = actualAnswer;
         this.possibleAnswers = possibleAnswers;
     }
 
-    //sup
     @Override
     public String askQuestion() {
-        String ret = "";
-        ret += super.askQuestion() + "\n";
-        for(int i = 0; i < possibleAnswers.size(); i++){
-            ret += possibleAnswers.get(i) + "\n";
-        }
-        return ret;
+        return super.askQuestion();
+    }
+    
+    @Override
+    public boolean check(String userAnswer){
+        return userAnswer.equals(actualAnswer);
     }
 
     @Override
     public MultipleChoiceQuestion clone(){
-        return new MultipleChoiceQuestion(super.askQuestion(), super.getAnswer(), possibleAnswers);
+        return new MultipleChoiceQuestion(super.askQuestion(), this.possibleAnswers, this.actualAnswer);
     }
+    
     public void setPossibleAnswers (ArrayList<String> possibleAnswers){
         this.possibleAnswers = possibleAnswers;
     }
