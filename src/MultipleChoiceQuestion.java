@@ -4,6 +4,10 @@ public class MultipleChoiceQuestion extends ShortAnswerQuestion {
     ArrayList<String> possibleAnswers = new ArrayList<>();
     String actualAnswer;
     
+    public MultipleChoiceQuestion() {
+    		//do nothing
+    }
+    
     public MultipleChoiceQuestion(String question, ArrayList<String> possibleAnswers) {
     		super(question, possibleAnswers);
     }
@@ -34,6 +38,10 @@ public class MultipleChoiceQuestion extends ShortAnswerQuestion {
     }
     public ArrayList<String> getPossibleAnswers(){
         return possibleAnswers;
+    }
+    
+    public void setActualAnswer(String actualAnswer) {
+    		this.actualAnswer = actualAnswer;
     }
 
     @Override

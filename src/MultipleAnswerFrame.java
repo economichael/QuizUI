@@ -1,5 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -78,6 +83,16 @@ public class MultipleAnswerFrame extends JFrame {
 		btnSave = new JButton("Save");
 		btnSave.setBounds(154, 243, 117, 29);
 		contentPane.add(btnSave);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				multipleChoiceQuestion.setQuestion(textField.getText());
+				ArrayList<String> answers = new ArrayList<>(Arrays.asList(editorPane.getText().split("\n")));
+				multipleChoiceQuestion.setActualAnswer(answers.get(0));
+				Collections.shuffle(answers);
+				multipleChoiceQuestion.setPossibleAnswers(answers);
+				dispose();
+			}
+		});
 		
 	}
 }

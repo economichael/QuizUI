@@ -9,12 +9,16 @@ import javax.swing.JTextField;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.awt.event.ActionEvent;
 
 public class MultipleChoiceFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	MultipleChoiceQuestion multipleChoiceQuestion;
 
 	/**
 	 * Launch the application.
@@ -58,17 +62,29 @@ public class MultipleChoiceFrame extends JFrame {
 		dtrpnEnterAnswersSeparated.setBounds(31, 60, 361, 67);
 		contentPane.add(dtrpnEnterAnswersSeparated);
 		
-		JEditorPane editorPane = new JEditorPane();
+		final JEditorPane editorPane = new JEditorPane();
 		editorPane.setBounds(31, 139, 361, 100);
 		contentPane.add(editorPane);
 		
+		//added 
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				multipleChoiceQuestion.setQuestion(textField.getText());
+				ArrayList<String> answers = new ArrayList<>(Arrays.asList(editorPane.getText().split("\n")));
+				multipleChoiceQuestion.setActualAnswer(answers.get(0));
+				Collections.shuffle(answers);
+				multipleChoiceQuestion.setPossibleAnswers(answers);
+				dispose();
 			}
 		});
+		
 		btnSave.setBounds(156, 243, 117, 29);
 		contentPane.add(btnSave);
+	}
+	
+	public void addQuestion(MultipleChoiceQuestion question) {
+		this.multipleChoiceQuestion = question;
 	}
 
 }

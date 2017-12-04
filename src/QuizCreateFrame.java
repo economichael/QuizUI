@@ -54,7 +54,7 @@ public class QuizCreateFrame extends JFrame {
 		txtpnQuestion.setBounds(281, 54, 84, 16);
 		contentPane.add(txtpnQuestion);
 		
-		JList list = new JList();
+		final JList list = new JList();
 		list.setBounds(6, 6, 191, 222);
 		contentPane.add(list);
 		
@@ -77,7 +77,10 @@ public class QuizCreateFrame extends JFrame {
 		addMultipleChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MultipleChoiceFrame multipleChoiceFrame = new MultipleChoiceFrame();
+				MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
+				multipleChoiceFrame.addQuestion(multipleChoiceQuestion);
 				multipleChoiceFrame.setVisible(true);
+				quizQuestions.add(multipleChoiceQuestion);
 			}
 		});
 		

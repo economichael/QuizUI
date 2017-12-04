@@ -52,7 +52,7 @@ public class ShortAnswerFrame extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JEditorPane editorPane = new JEditorPane();
+		final JEditorPane editorPane = new JEditorPane();
 		editorPane.setBounds(31, 108, 365, 119);
 		contentPane.add(editorPane);
 		
